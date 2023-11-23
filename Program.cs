@@ -9,6 +9,57 @@ namespace lab1
 {
     internal class Program
     {
-        
+        static void Main(string[] args)
+        {
+            Console.WriteLine(".NET Lab.work #1. Option #16");
+            Console.WriteLine("Point 1:");
+            Console.WriteLine("Enter the size of the generating array:");
+            int N_VECTOR = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("Source generated array:");
+            var numbers = GenerateVector(N_VECTOR);
+            var posCount = 0;
+            var lastZeroPos = -1;
+            var sumAfterLastZero = 0.0;
+            for (var i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] > 0) posCount++;
+
+                if (numbers[i] == 0)
+                {
+                    lastZeroPos = i;
+                    sumAfterLastZero = 0.0;
+                }
+
+                if (lastZeroPos != -1 & i > lastZeroPos)
+                {
+                    sumAfterLastZero += numbers[i];
+                }
+                Console.Write(string.Format("{0:f2}", numbers[i]) + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Count of positive numbers is - " + posCount);
+            Console.WriteLine("Sum of numbers ater last zero - " + string.Format("{0:f2}", sumAfterLastZero));
+            Console.WriteLine();
+
+           
+
+        }
+
+        private static double[] GenerateVector(int n)
+        {
+            var array = new double[n];
+            var randomGen = new Random();
+
+
+            for (var i = 0; i < array.Length; i++)
+            {
+                array[i] = randomGen.NextDouble() * (randomGen.Next(6) - 3);
+
+            }
+            return array;
+        }
+
+       
     }
 }
