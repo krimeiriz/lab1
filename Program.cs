@@ -42,7 +42,30 @@ namespace lab1
             Console.WriteLine("Sum of numbers ater last zero - " + string.Format("{0:f2}", sumAfterLastZero));
             Console.WriteLine();
 
-           
+            Console.WriteLine("The sorted array where elements with whole part less or equal than 1 are situated firstly:");
+            Array.Sort(numbers, (a, b) =>
+            {
+                if (a == b) return 0;
+                a = Math.Abs(a); b = Math.Abs(b);
+                
+
+                if (a <= 1 & b > 1)
+                    return -1;
+                else if (b <= 1 & a > 1)
+                    return 1;
+
+                return 0;
+
+            });
+
+            for(var i = 0; i < numbers.Length; i++)
+            {
+                Console.Write(string.Format("{0:f2}", numbers[i]) + " ");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+          
 
         }
 
@@ -60,6 +83,5 @@ namespace lab1
             return array;
         }
 
-       
     }
 }
